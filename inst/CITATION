@@ -1,0 +1,19 @@
+citHeader("To cite the GenoPop package itself, please use the following citation. For the genotype imputation method, please also cite the preprint below.")
+
+bibentry("Manual",
+  title = "GenoPop: R Package for Genotype Imputation and Population Genomics",
+  author = person(given = "Marie", family = "Gurke", email = "margurke@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-9901-424X")),
+  year = "2024",
+  note = "R package version 0.9",
+  url = "https://github.com/MiGurke/GenoPop"
+)
+
+bibentry("Misc",
+  title    = "{GenoPop-Impute}: Efficient and accurate whole-genome genotype imputation in non-model species for evolutionary genomic research",
+  author   = c(
+    person(given = "Marie", family = "Gurke", email = "margurke@gmail.com", comment = c(ORCID = "0000-0001-9901-424X")),
+    person(given = "Frieder", family = "Mayer", comment = c(ORCID = "0000-0002-0594-9923"))
+  ),
+  year     = "2024",
+  doi      = "10.22541/au.172515591.10119928/v1"
+)
