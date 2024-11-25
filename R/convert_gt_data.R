@@ -426,6 +426,11 @@ process_vcf_in_windows <- function(vcf_path, window_size, skip_size, custom_func
             e <- simpleError(paste0("Individuals names '", exclude_ind[wrong], "' not found in VCF file."))
             stop(e)
           }
+          # Find columns (individuals) to exclude
+          cols_to_exclude <- which(individual_names %in% exclude_ind)
+          # Exclude the specified individuals from the genotype matrix
+          gt_matrix <- gt_matrix[, -cols_to_exclude, drop = FALSE]
+          ex_ind_names <- individual_names[-cols_to_exclude]
         }
         # If pop1 and pop2 individuals are given, also check them for errors
         if (!is.null(pop1_individuals)) {
@@ -519,7 +524,6 @@ process_vcf_in_windows <- function(vcf_path, window_size, skip_size, custom_func
 #' @return A list containing two data frames, one for each population.
 #'
 #' @keywords internal
-#'
 #' @export
 
 separateByPopulations <- function(sep_gt, pop1_names, pop2_names, ploidy = 2, rm_ref_alleles = TRUE) {
@@ -556,7 +560,6 @@ separateByPopulations <- function(sep_gt, pop1_names, pop2_names, ploidy = 2, rm
 #' @return A data frame containing allele frequencies for each variant.
 #'
 #' @keywords internal
-#'
 #' @export
 
 calculateAlleleFreqs <- function(sep_gt) {

@@ -483,8 +483,8 @@ Heterozygosity <- function(vcf_path, batch_size = 10000, threads = 1, write_log 
 #' This function calculates the nucleotide diversity (Pi) for a sample in a VCF file as defined by Nei & Li, 1979 (https://doi.org/10.1073/pnas.76.10.5269).
 #' The formula used for this is equivalent to the one used in vcftools --window-pi (https://vcftools.sourceforge.net/man_latest.html).
 #' Handling missing alleles at one site is equivalent to Korunes & Samuk, 2021 ( https://doi.org/10.1111/1755-0998.13326).
-#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate Pi, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
-#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of Pi. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
+#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate the metric, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
+#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of the metric. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
 #' For batch processing, it uses `process_vcf_in_batches`. For windowed analysis, it uses a similar
 #' approach tailored to process specific genomic windows (`process_vcf_in_windows`).
 #'
@@ -623,8 +623,8 @@ Pi <- function(vcf_path, seq_length, batch_size = 10000, threads = 1, write_log 
 #'
 #' This function calculates Tajima's D statistic for a given dataset (Tajima, 1989 (10.1093/genetics/123.3.585)).
 #' The formula used for this is equivalent to the one used in vcftools --TajimaD (https://vcftools.sourceforge.net/man_latest.html).
-#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate Pi, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
-#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of Pi. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
+#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate the metric, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
+#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of the metric. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
 #' For batch processing, it uses `process_vcf_in_batches`. For windowed analysis, it uses a similar
 #' approach tailored to process specific genomic windows (`process_vcf_in_windows`).
 #'
@@ -812,8 +812,8 @@ TajimasD <- function(vcf_path, seq_length, batch_size = 10000, threads = 1, writ
 #' WattersonsTheta
 #'
 #' This function calculates Watterson's Theta, a measure for neutrality, from a VCF file (Watterson, 1975 (https://doi.org/10.1016/0040-5809(75)90020-9)).
-#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate Pi, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
-#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of Pi. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
+#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate the metric, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
+#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of the metric. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
 #' For batch processing, it uses `process_vcf_in_batches`. For windowed analysis, it uses a similar
 #' approach tailored to process specific genomic windows (`process_vcf_in_windows`).
 #'
@@ -933,8 +933,8 @@ WattersonsTheta <- function(vcf_path, seq_length, batch_size = 10000, threads = 
 #'
 #' This function calculates the average number of nucleotide differences per site (Dxy) between two populations from a VCF file (Nei & Li, 1979 (https://doi.org/10.1073/pnas.76.10.5269)).
 #' Handling missing alleles at one site is equivalent to Korunes & Samuk, 2021 ( https://doi.org/10.1111/1755-0998.13326).
-#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate Pi, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
-#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of Pi. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
+#' The function calculates the number of monomorphic sites using the sequence length and the number of variants in the VCF file. This assumes, that all sites not present in the VCF file are invariant sites, which will underestimate the metric, because of commonly done (and necessary) variant filtering. However, otherwise this calculation would only work with VCF files that include all monomorphic sites, which is quite unpractical for common use cases and will increase computational demands significantly.
+#' If you happen to know the number of filtered our sites vs the number of monomorphic sites, please use the number of monomorphic + the number of polymorphic (number of variants in your VCF) sites as the sequence length to get the most accurate estimation of the metric. (This does not work for the window mode of this function, which assumes the sequence length to be the window size.)
 #' For batch processing, it uses `process_vcf_in_batches`. For windowed analysis, it uses a similar
 #' approach tailored to process specific genomic windows (`process_vcf_in_windows`).
 #'
@@ -1220,9 +1220,8 @@ Fst <- function(vcf_path, pop1_individuals, pop2_individuals, weighted = FALSE, 
                                                 }
                                                 if (!is.na(fst)) {
                                                   sum3 <- sum3 + fst
+                                                  count <- count + 1
                                                 }
-                                                count <- count + 1
-
                                               }
                                               return(c(sum1, sum2, sum3, count))
                                             })
@@ -1340,8 +1339,8 @@ Fst <- function(vcf_path, pop1_individuals, pop2_individuals, weighted = FALSE, 
                                                  }
                                                  if (!is.na(fst)) {
                                                    sum3 <- sum3 + fst
+                                                   count <- count + 1
                                                  }
-                                                 count <- count + 1
                                                }
                                                if (weighted) {
                                                  final_fst <- sum1 / sum2
